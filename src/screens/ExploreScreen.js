@@ -7,14 +7,14 @@ import Colors from '../constants/colors';
 import BottomNav from '../components/BottomNav';
 import PodcastHorizontalCard from '../components/PodcastHorizontalCard';
 import { useNetwork } from '../services/NetworkManager';
-import { mockPodcasts, mockCategories } from '../data/mockData';
+import { podcasts, categories } from '../data/mockData';
 
 export default function ExploreScreen({ navigation }) {
   const { isConnected } = useNetwork();
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const filtered = mockPodcasts.filter(p => {
+  const filtered = podcasts.filter(p => {
     const matchSearch =
       p.title.toLowerCase().includes(search.toLowerCase()) ||
       p.author.toLowerCase().includes(search.toLowerCase());
@@ -89,7 +89,7 @@ export default function ExploreScreen({ navigation }) {
               showsHorizontalScrollIndicator={false}
               style={styles.categories}
             >
-              {mockCategories.map(cat => (
+              {categories.map(cat => (
                 <TouchableOpacity
                   key={cat}
                   style={[styles.catTag, activeCategory === cat && styles.catTagActive]}

@@ -6,13 +6,13 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '../constants/colors';
 import EpisodeItem from '../components/EpisodeItem';
-import { mockEpisodes } from '../data/mockData';
+import { episodes as allEpisodes } from '../data/mockData';
 
 export default function PodcastScreen({ route, navigation }) {
   const { podcast } = route.params;
   const [downloadedIds, setDownloadedIds] = useState([101]); // ep 101 pre-downloaded for demo
 
-  const episodes = mockEpisodes.filter(e => e.podcastId === podcast.id);
+  const episodes = allEpisodes.filter(e => e.podcastId === podcast.id);
   const idx = (podcast.id - 1) % Colors.covers.length;
   const coverColors = Colors.covers[idx];
   const emoji = Colors.coverEmojis[idx];

@@ -1,22 +1,24 @@
+
+// Hook React compatible Expo 51 + @react-native-community/netinfo
+
 import { useState, useEffect } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 
-// Hook — use anywhere to get connection state
 export function useNetwork() {
   const [isConnected, setIsConnected] = useState(true);
 
   useEffect(() => {
-    // Initial check
+    // Vérification initiale
     NetInfo.fetch().then(state => {
       setIsConnected(state.isConnected ?? true);
     });
 
-    // Subscribe to changes
-    const unsub = NetInfo.addEventListener(state => {
+    // Écoute les changements réseau en temps réel
+    const unsubscribe = NetInfo.addEventListener(state => {
       setIsConnected(state.isConnected ?? true);
     });
 
-    return () => unsub();
+    return () => unsubscribe();
   }, []);
 
   return { isConnected };

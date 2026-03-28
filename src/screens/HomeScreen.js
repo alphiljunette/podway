@@ -9,7 +9,7 @@ import OfflineBanner from '../components/OfflineBanner';
 import PodcastVerticalCard from '../components/PodcastVerticalCard';
 import PodcastHorizontalCard from '../components/PodcastHorizontalCard';
 import { useNetwork } from '../services/NetworkManager';
-import { mockPodcasts } from '../data/mockData';
+import { podcasts } from '../data/mockData';
 
 export default function HomeScreen({ navigation }) {
   const { isConnected } = useNetwork();
@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation }) {
         {isConnected ? (
           <FlatList
             horizontal
-            data={mockPodcasts.slice(0, 5)}
+            data={podcasts.slice(0, 5)}
             keyExtractor={item => item.id.toString()}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
@@ -95,7 +95,7 @@ export default function HomeScreen({ navigation }) {
         </View>
 
         {isConnected ? (
-          mockPodcasts.slice(0, 4).map(podcast => (
+          podcasts.slice(0, 4).map(podcast => (
             <PodcastHorizontalCard
               key={podcast.id}
               podcast={podcast}

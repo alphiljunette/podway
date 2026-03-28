@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, StatusBar,
@@ -7,17 +7,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '../constants/colors';
 import BottomNav from '../components/BottomNav';
 import { useNetwork } from '../services/NetworkManager';
-import { mockDownloaded } from '../data/mockData';
-
-const USED_GB = 1.2;
-const TOTAL_GB = 16;
+import LibraryService from '../services/LibraryService';
+import StorageManager from '../services/StorageManager';
 
 export default function LibraryScreen({ navigation }) {
   const { isConnected } = useNetwork();
-  const [downloaded] = useState(mockDownloaded);
+  
+  const downloaded = LibraryService.getGrouped();
+  const { usedSpace, totalSpace } = StorageManager.getStorageInfo();
 
   const totalEpisodes = downloaded.reduce((acc, g) => acc + g.episodes.length, 0);
-  const pct = (USED_GB / TOTAL_GB) * 100;
+  const pct = (usedSpace / totalSpace) * 100;
 
   return (
     <View style={styles.container}>
@@ -52,7 +52,7 @@ export default function LibraryScreen({ navigation }) {
         <View style={styles.storageCard}>
           <View style={styles.storageHeader}>
             <Text style={styles.storageTitle}>💾 Storage</Text>
-            <Text style={styles.storageInfo}>{USED_GB} / {TOTAL_GB} GB</Text>
+            <Text style={styles.storageInfo}>{usedSpace} / {totalSpace} GB</Text>
           </View>
           <View style={styles.storageTrack}>
             <LinearGradient
@@ -62,8 +62,8 @@ export default function LibraryScreen({ navigation }) {
             />
           </View>
           <View style={styles.storageLabels}>
-            <Text style={styles.storageUsed}>{USED_GB} GB used</Text>
-            <Text style={styles.storageFree}>{(TOTAL_GB - USED_GB).toFixed(1)} GB free</Text>
+            <Text style={styles.storageUsed}>{usedSpace} GB used</Text>
+            <Text style={styles.storageFree}>{(totalSpace - usedSpace).toFixed(1)} GB free</Text>
           </View>
         </View>
 
