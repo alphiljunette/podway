@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+require('dotenv').config();
+=======
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 // ─────────────────────────────────────────────────────
 // server.js — PodWay API
 // Node.js + Express (no TypeScript)
@@ -8,11 +12,22 @@ const cors    = require('cors');
 const helmet  = require('helmet');
 const morgan  = require('morgan');
 
+<<<<<<< HEAD
+const connectDB      = require('./config/db');
+const podcastRoutes  = require('./routes/routes/podcasts');
+const episodeRoutes  = require('./routes/routes/episodes');
+const downloadRoutes = require('./routes/routes/downloads');
+const libraryRoutes  = require('./routes/routes/library');
+const networkRoutes  = require('./routes/routes/network');
+
+connectDB();
+=======
 const podcastRoutes  = require('./routes/podcasts');
 const episodeRoutes  = require('./routes/episodes');
 const downloadRoutes = require('./routes/downloads');
 const libraryRoutes  = require('./routes/library');
 const networkRoutes  = require('./routes/network');
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
 const app  = express();
 const PORT = process.env.PORT || 3000;

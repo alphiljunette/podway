@@ -7,8 +7,13 @@
 
 const express = require('express');
 const router  = express.Router();
+<<<<<<< HEAD
+const Podcast = require('../../models/Podcast');
+const Episode = require('../../models/Episode');
+=======
 const Podcast = require('../models/Podcast');
 const Episode = require('../models/Episode');
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
 const CATEGORIES = ['All', 'Tech', 'Science', 'Society', 'Culture', 'Business'];
 

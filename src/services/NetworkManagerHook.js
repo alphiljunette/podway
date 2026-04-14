@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-// services/NetworkManager.js
-// Version serveur Node.js (pas de React hooks)
-
-const NetworkManager = {
-  checkConnection: () => true,
-  getStatus: () => ({ isConnected: true, type: 'wifi' }),
-  isAccessible: () => {
-    const connected = this.checkConnection();
-    console.log(`[NetworkManager] Server accessible — network: ${connected ? 'online' : 'offline'}`);
-  }
-};
-
-module.exports = NetworkManager;
-=======
-
 // Hook React compatible Expo 51 + @react-native-community/netinfo
 
 import { useState, useEffect } from 'react';
@@ -38,4 +22,3 @@ export function useNetwork() {
 
   return { isConnected };
 }
->>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548

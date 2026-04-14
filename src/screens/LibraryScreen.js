@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React from 'react';
+=======
 import React, { useMemo } from 'react';
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, StatusBar,
@@ -6,6 +10,24 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '../constants/colors';
 import BottomNav from '../components/BottomNav';
+<<<<<<< HEAD
+import { useNetwork } from '../services/NetworkManagerHook';
+import { useAppContext } from '../context/AppContext';
+
+export default function LibraryScreen({ navigation }) {
+  const { isConnected } = useNetwork();
+  const {
+    groupedDownloads: downloaded,
+    storageInfo,
+    totalDownloadedEpisodes,
+    totalDownloadedPodcasts,
+  } = useAppContext();
+
+  const { usedByApp, remainingFree, totalSpace } = storageInfo;
+  const totalEpisodes = totalDownloadedEpisodes;
+  const pct = totalSpace > 0 ? ((totalSpace - remainingFree) / totalSpace) * 100 : 0;
+  const isStorageCritical = remainingFree <= 0.999;
+=======
 import { useNetwork } from '../services/NetworkManager';
 import LibraryService from '../services/LibraryService';
 import StorageManager from '../services/StorageManager';
@@ -18,6 +40,7 @@ export default function LibraryScreen({ navigation }) {
 
   const totalEpisodes = downloaded.reduce((acc, g) => acc + g.episodes.length, 0);
   const pct = (usedSpace / totalSpace) * 100;
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
   return (
     <View style={styles.container}>
@@ -52,18 +75,38 @@ export default function LibraryScreen({ navigation }) {
         <View style={styles.storageCard}>
           <View style={styles.storageHeader}>
             <Text style={styles.storageTitle}>💾 Storage</Text>
+<<<<<<< HEAD
+            <Text style={styles.storageInfo}>{usedByApp} GB used · {remainingFree} GB free</Text>
+          </View>
+          <View style={styles.storageTrack}>
+            <LinearGradient
+              colors={isStorageCritical ? [Colors.red, Colors.redDim] : [Colors.acc, Colors.accDim]}
+=======
             <Text style={styles.storageInfo}>{usedSpace} / {totalSpace} GB</Text>
           </View>
           <View style={styles.storageTrack}>
             <LinearGradient
               colors={[Colors.acc, Colors.teal]}
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
               style={[styles.storageFill, { width: `${pct}%` }]}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             />
           </View>
+<<<<<<< HEAD
+          <View style={styles.storageInfo2}>
+            <View>
+              <Text style={styles.storageLabel}>App Downloads</Text>
+              <Text style={[styles.storageValue, { color: Colors.acc }]}>{usedByApp} GB</Text>
+            </View>
+            <View>
+              <Text style={styles.storageLabel}>Phone Available</Text>
+              <Text style={[styles.storageValue, { color: isStorageCritical ? Colors.red : Colors.teal }]}>{remainingFree} GB</Text>
+            </View>
+=======
           <View style={styles.storageLabels}>
             <Text style={styles.storageUsed}>{usedSpace} GB used</Text>
             <Text style={styles.storageFree}>{(totalSpace - usedSpace).toFixed(1)} GB free</Text>
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
           </View>
         </View>
 
@@ -91,7 +134,10 @@ export default function LibraryScreen({ navigation }) {
             const podIdx = (group.podcast.id - 1) % Colors.covers.length;
             const coverColors = Colors.covers[podIdx];
             const emoji = Colors.coverEmojis[podIdx];
+<<<<<<< HEAD
+=======
             const totalMB = group.episodes.reduce((acc, e) => acc + e.fileSize, 0);
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
             return (
               <TouchableOpacity
@@ -109,7 +155,11 @@ export default function LibraryScreen({ navigation }) {
                 <View style={styles.podInfo}>
                   <Text style={styles.podTitle}>{group.podcast.title}</Text>
                   <Text style={styles.podSub}>
+<<<<<<< HEAD
+                    {group.episodes.length} episode{group.episodes.length > 1 ? 's' : ''} downloaded · {group.totalSizeMB} MB
+=======
                     {group.episodes.length} episode{group.episodes.length > 1 ? 's' : ''} downloaded · {totalMB} MB
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
                   </Text>
                 </View>
                 <Text style={styles.arrow}>›</Text>
@@ -161,11 +211,19 @@ const styles = StyleSheet.create({
   storageHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
   storageTitle: { fontSize: 13, fontWeight: '700', color: Colors.text },
   storageInfo: { fontSize: 11, color: Colors.teal },
+<<<<<<< HEAD
+  storageTrack: { height: 5, backgroundColor: Colors.s4, borderRadius: 5, overflow: 'hidden', marginBottom: 12 },
+  storageFill: { height: '100%', borderRadius: 5 },
+  storageInfo2: { flexDirection: 'row', justifyContent: 'space-around' },
+  storageLabel: { fontSize: 9, color: Colors.t3, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 },
+  storageValue: { fontSize: 13, fontWeight: '700', color: Colors.text },
+=======
   storageTrack: { height: 5, backgroundColor: Colors.s4, borderRadius: 5, overflow: 'hidden' },
   storageFill: { height: '100%', borderRadius: 5 },
   storageLabels: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 },
   storageUsed: { fontSize: 10, color: Colors.acc },
   storageFree: { fontSize: 10, color: Colors.t3 },
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
   sectionTitle: { fontSize: 14, fontWeight: '700', color: Colors.text, marginBottom: 4 },
   tapHint: { fontSize: 10, color: Colors.t3, fontStyle: 'italic', marginBottom: 12 },

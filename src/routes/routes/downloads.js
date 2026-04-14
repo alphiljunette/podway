@@ -11,9 +11,15 @@
 
 const express        = require('express');
 const router         = express.Router();
+<<<<<<< HEAD
+const Download       = require('../../models/Download');
+const Episode        = require('../../models/Episode');
+const StorageManager = require('../../services/StorageManager');
+=======
 const Download       = require('../models/Download');
 const Episode        = require('../models/Episode');
 const StorageManager = require('../services/StorageManager');
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
 const VALID_STATUSES = ['pending', 'in_progress', 'completed', 'failed'];
 

@@ -6,11 +6,19 @@ const helmet  = require('helmet');
 const morgan  = require('morgan');
 
 const connectDB      = require('./src/config/db');
+<<<<<<< HEAD
+const podcastRoutes  = require('./src/routes/routes/podcasts');
+const episodeRoutes  = require('./src/routes/routes/episodes');
+const downloadRoutes = require('./src/routes/routes/downloads');
+const libraryRoutes  = require('./src/routes/routes/library');
+const networkRoutes  = require('./src/routes/routes/network');
+=======
 const podcastRoutes  = require('./src/routes/podcasts');
 const episodeRoutes  = require('./src/routes/episodes');
 const downloadRoutes = require('./src/routes/downloads');
 const libraryRoutes  = require('./src/routes/library');
 const networkRoutes  = require('./src/routes/network');
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 
 connectDB();
 

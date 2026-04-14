@@ -53,7 +53,10 @@ const DownloadSchema = new mongoose.Schema(
 );
 
 // Index pour requêtes fréquentes
+<<<<<<< HEAD
+=======
 DownloadSchema.index({ episodeId: 1 });
+>>>>>>> 2bbc1d65d42591cda0a1921daed68a104f1e7548
 DownloadSchema.index({ status: 1 });
 
 // Méthode statique : vérifier si un épisode est téléchargé
